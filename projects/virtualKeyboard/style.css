@@ -1,0 +1,124 @@
+@font-face {
+  font-family: Roboto;
+  src: url(Roboto-Regular.ttf);
+  font-style: normal;
+  font-weight: normal;
+}
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --classic: rgb(58, 66, 78);
+  --darkgrey: rgb(36, 36, 36);
+  --mediumgrey: rgb(28, 35, 46);
+  --white: rgb(255, 255, 255);
+  --lightwhite: rgb(225, 225, 225);
+  --lightgrey: rgb(99, 100, 104);
+  --hover-color: rgb(0, 185, 185);
+}
+body {
+  font-family: Roboto, sans-serif;
+  transition: 0.3s;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0 10px;
+}
+.text {
+  max-width: 722px;
+  width: 100%;
+  min-height: 80px;
+  border: none;
+  outline: none;
+  margin: 10px;
+  padding: 10px;
+  background-color: var(--lightwhite);
+  font-size: 20px;
+}
+.keyboard-wrapper {
+  max-width: 722px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--lightwhite);
+  padding: 4px;
+}
+.keyboard-keys {
+}
+.row {
+  display: flex;
+}
+.keys {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 4px;
+  background-color: var(--white);
+  transition: 0.3s;
+}
+.keys:hover {
+  background-color: var(--hover-color);
+  cursor: pointer;
+}
+.keys-backspace {
+  width: 90px;
+}
+.keys-tab {
+  width: 75px;
+}
+.keys-slash {
+  width: 40px;
+}
+.keys-capslock {
+  width: 95px;
+}
+.keys-enter {
+  width: 85px;
+}
+.keys-shift {
+}
+.left-shift {
+  width: 120px;
+}
+.right-shift {
+  width: 85px;
+}
+.keys-ctrl {
+}
+.left-ctrl {
+  width: 50px;
+}
+.keys-space {
+  min-width: 225px;
+}
+.keys-win {
+}
+.keys-alt {
+}
+.left-alt {
+  width: 50px;
+}
+.right-alt {
+  width: 50px;
+}
+.right-ctrl {
+  width: 50px;
+}
+.active {
+  background-color: var(--hover-color);
+  color: var(--white);
+}
+.discription{
+  margin-top: 20px;
+  text-align: center;
+}

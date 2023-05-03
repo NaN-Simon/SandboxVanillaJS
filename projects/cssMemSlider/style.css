@@ -15,19 +15,19 @@ body {
   backdrop-filter: blur(4px);
 }
 .img1 {
-  background-image: url(./scr/img/1.jpg);
+  background-image: url(./src/img/1.jpg);
 }
 .img2 {
-  background-image: url(./scr/img/2.jpg);
+  background-image: url(./src/img/2.jpg);
 }
 .img3 {
-  background-image: url(./scr/img/3.jpg);
+  background-image: url(./src/img/3.jpg);
 }
 .img4 {
-  background-image: url(./scr/img/4.jpg);
+  background-image: url(./src/img/4.jpg);
 }
 .img5 {
-  background-image: url(./scr/img/5.jpg);
+  background-image: url(./src/img/5.jpg);
 }
 
 .wrapper {
