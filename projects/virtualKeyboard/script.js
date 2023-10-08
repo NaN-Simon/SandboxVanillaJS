@@ -85,7 +85,6 @@ body.innerHTML = `
     <div class="discription">
       <p>Клавиатура создана в операционной системе Windows</p>
       <p>Для переключения языка комбинация: левыe ctrl + shift</p>
-      <p><a href="https://github.com/NaN-Simon/virtual-keyboard">Virtual-Keyboard repository</a></p>
     </div>
   </div>
 `
