@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ambient Light Effects</title>
+  <style>
+    :root {
+      --main-color: #006aec;
+      --bg: #050505;
+      --up-gradient: #151515;
+      --cover-color: #211930;
+      --cover-bottom: rgb(0, 170, 255);
+      --cover-bottom-lvl-1: rgba(123, 0, 255, 0.2);
+      --cover-bottom-lvl-2: rgba(123, 0, 0, 0.4);
+      --cover-bottom-lvl-3: rgba(0, 49, 123, 0.6);
+      --cover-bottom-lvl-4: rgba(4, 0, 123, 0.8);
+      --cover-bottom-lvl-5: rgb(14, 0, 123);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: var(--bg);
+    }
+
+    .cube {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      transform-style: preserve-3d;
+      transform: rotateX(-30deg);
+      animation: animate 8s linear infinite;
+    }
+
+    @keyframes animate {
+      0% {
+        transform: rotateX(-30deg) rotateY(0deg);
+      }
+
+      100% {
+        transform: rotateX(-30deg) rotateY(360deg);
+      }
+    }
+
+    .cube div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+    }
+
+    .cube div span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(var(--up-gradient), var(--main-color));
+      transform: rotateY(calc(90deg * var(--i))) translateZ(150px);
+    }
+
+    .top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 300px;
+      background: var(--cover-color);
+      transform: rotateX(90deg) translateZ(150px);
+    }
+
+    .top::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 300px;
+      background: var(--cover-bottom);
+      transform: translateZ(-380px);
+      filter: blur(20px);
+      box-shadow:
+        0 0 120px var(--cover-bottom-lvl-1),
+        0 0 200px var(--cover-bottom-lvl-2),
+        0 0 300px var(--cover-bottom-lvl-3),
+        0 0 400px var(--cover-bottom-lvl-4),
+        0 0 500px var(--cover-bottom-lvl-5);
+    }
+
+    .text {
+      font-size: 55px;
+      font-family: Brush Script MT;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image {
+      background-image: url('room.jpg') !important;
+      background-size: contain;
+      box-shadow: 0px 5px 30px;
+      transform: translate(-1px, -1px) scale(0.8);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cube">
+    <div class="top text">42</div>
+    <div>
+      <span class="text" style="--i:0;">
+        <div class="image"></div>
+      </span>
+      <span class="text" style="--i:1;">NaN-Simon</span>
+      <span class="text" style="--i:2;">NaN-Simon</span>
+      <span class="text" style="--i:3;">NaN-Simon</span>
+    </div>
+  </div>
+</body>
+
+</html>

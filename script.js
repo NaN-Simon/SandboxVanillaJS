@@ -54,3 +54,4 @@ const block12 = new Card('Linker', './projects/linker/dist/index.html', 'Deploy'
 const block13 = new Card('portrait', './projects/portrait/index.html', 'Deploy', 'October 2022')
 const block14 = new Card('English-cards', './projects/eng-cards/dist/index.html', 'Deploy', 'November 2022')
 const block15 = new Card('Game Life', './projects/gameLife/index.html', 'Deploy', 'April 2023')
+const block16 = new Card('Rotated Box', './projects/rotatedBox/box.html', 'Deploy', 'October 2023')
