@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Options Editor</title>
+</head>
+<style>
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: fit-content;
+    padding: 20px;
+    box-shadow: inset 0 0 5px 0 #3d3d3d;
+  }
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .input {
+    width: 100%;
+    height: 23px;
+    padding: 0 5px;
+    outline: none;
+    border: 0;
+    box-shadow: 0 0 5px 0 #3d3d3d;
+  }
+
+  .h6 {
+    font-size: 20px;
+  }
+</style>
+
+<body>
+  <script>
+
+    const startParams =
+      [
+        {
+          id: 1,
+          name: "Назначение",
+        },
+        {
+          id: 2,
+          name: "Название",
+        },
+      ]
+
+    const startModel =
+    {
+      paramValues: [
+        {
+          paramId: 1,
+          value: "повседневное"
+        },
+        {
+          paramId: 2,
+          value: "приветствие"
+        },
+      ]
+    }
+
+    /* первое присваивание data */
+    !localStorage.getItem('params') && localStorage.setItem('params', JSON.stringify(startParams))
+    !localStorage.getItem('model') && localStorage.setItem('model', JSON.stringify(startModel))
+
+    const params = JSON.parse(localStorage.getItem('params'))
+    const model = JSON.parse(localStorage.getItem('model'))
+
+    const body = document.querySelector('body')
+    const form = document.createElement('form')
+    form.classList.add('form')
+
+    params.forEach((element, index) => {
+      const wrapper = document.createElement('div')
+      wrapper.classList.add('wrapper')
+
+      /* создать название для input */
+      const paragraphElement = createParagraph(element.name, element.id, 'h6')
+
+      /* если в model нет значения, оно будет создано */
+      const inputModelValue = model.paramValues[index] ? model.paramValues[index].value : ''
+      const inputModelId = model.paramValues[index] ? model.paramValues[index].paramId : index + Date.now()
+
+      /* создать input */
+      const inputElement = createInput(inputModelValue, inputModelId)
+
+      /* повесить обработчик событий на изменение */
+      inputElement.addEventListener('keyup', (e) => {
+        model.paramValues[index] = {
+          paramId: inputModelId,
+          value: e.target.value
+        }
+
+        /* сохранить в localStorage */
+        localStorage.setItem('params', JSON.stringify(params))
+        localStorage.setItem('model', JSON.stringify(model))
+      })
+
+      /* добавить элементы в wrapper */
+      wrapper.append(paragraphElement)
+      wrapper.append(inputElement)
+
+      form.append(wrapper)
+    });
+
+
+    /* добавить форму на страницу */
+    body.append(form)
+
+    function createInput(value, id) {
+      const input = document.createElement('input')
+      input.classList.add('input')
+      input.value = value
+      input.placeholder = 'Введите что-то'
+      input.setAttribute('id', id)
+      return input
+    }
+    function createParagraph(text, id, tag) {
+      const h = document.createElement(tag)
+      h.classList.add(tag)
+      h.innerHTML = text
+      h.setAttribute('id', id)
+      return h
+    }
+
+  </script>
+</body>
+
+</html>
