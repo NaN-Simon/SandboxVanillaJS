@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Vanilla JS + CSS - Modal Popup Example</title>
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js"></script>
+</head>
+<style>
+  /* GENERAL STYLES
+-------------------------------*/
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+  }
+
+  h1 {
+    font-weight: normal;
+    margin-top: 0;
+  }
+
+  button {
+    padding: 7px 10px;
+    margin-right: 5px;
+  }
+
+  .credits {
+    margin-top: 30px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+  }
+
+  /* MODAL STYLES
+-------------------------------*/
+  .jw-modal {
+    /* modals are hidden by default */
+    display: none;
+
+    /* modal container fixed across whole screen */
+    position: fixed;
+    inset: 0;
+
+    /* z-index must be higher than everything else on the page */
+    z-index: 10000;
+
+    /* semi-transparent black background exposed by padding */
+    background-color: rgba(0, 0, 0, .75);
+    padding: 40px;
+
+    /* enables scrolling for tall modals */
+    overflow: auto;
+  }
+
+  .jw-modal.open {
+    display: block;
+  }
+
+  .jw-modal-body {
+    padding: 20px;
+    background: #fff;
+  }
+
+  body.jw-modal-open {
+    /* body overflow is hidden to hide main scrollbar when modal window is open */
+    overflow: hidden;
+  }
+</style>
+
+<body>
+
+  <!-- main app container -->
+  <div>
+    <div>
+      <h1>Vanilla JS + CSS - Modal Popup Example</h1>
+      <p>Click the buttons below to open the example modals</p>
+      <button onclick="openModal('modal-1')">Open Modal 1</button>
+      <button onclick="openModal('modal-2')">Open Modal 2</button>
+    </div>
+
+    <div id="modal-1" class="jw-modal">
+      <div class="jw-modal-body">
+        <h1>A custom modal popup</h1>
+        <button onclick="closeModal()">Close</button>
+      </div>
+    </div>
+
+    <div id="modal-2" class="jw-modal">
+      <div class="jw-modal-body">
+        <h1>A tall modal popup</h1>
+        <p style="padding-bottom: 1500px;">Close with the button below or by clicking the background.</p>
+        <button onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- credits -->
+  <div class="credits">
+    <p>
+      <a href="https://jasonwatmore.com/post/2023/01/04/vanilla-js-css-modal-popup-dialog-tutorial-with-example"
+        target="_top">Vanilla JS + CSS - Modal Popup (Dialog) Tutorial with Example</a>
+    </p>
+    <p>
+      <a href="https://jasonwatmore.com" target="_top">JasonWatmore.com</a>
+    </p>
+  </div>
+
+</body>
+<script>
+  // open modal by id
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.classList.add('jw-modal-open');
+  }
+
+  // close currently open modal
+  function closeModal() {
+    document.querySelector('.jw-modal.open').classList.remove('open');
+    document.body.classList.remove('jw-modal-open');
+  }
+
+  window.addEventListener('load', function () {
+    // close modals on background click
+    document.addEventListener('click', event => {
+      if (event.target.classList.contains('jw-modal')) {
+        closeModal();
+      }
+    });
+  });
+</script>
+
+</html>
