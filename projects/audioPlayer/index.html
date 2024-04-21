@@ -1,68 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="../../favicon.ico" />
-    <title>Audio-player</title>
-  </head>
-  <body class="body">
-    <div class="background-container">
-      <img src="./assets/images/cover0.png" class="background" />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Audio-player</title>
+</head>
+
+<body class="body m-0 p-0 box-border relative bg-[#000000] scroll-smooth">
+  <div class="background-container absolute overflow-hidden w-full h-[692px]">
+    <img src="./assets/images/cover0.png"
+      class="background absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[670px] object-cover z-0 blur" />
+  </div>
+
+  <div class="container flex justify-center items-center flex-col pt-9 relative z-10">
+    <div class="sup-player overflow-hidden rounded-[25px_25px_0_0]">
+      <img src="./assets/images/cover0.png" class="cover-png w-[400px] h-[400px] -mb-2 duration-[2000ms]" />
     </div>
-    
-    <div class="container">
-      <div class="sup-player">
-        <img
-          src="./assets/images/cover0.png"
-          class="cover-png"
-        />
+    <div class="sub-player flex flex-col items-center w-[400px] h-[145px] rounded-[0_0_25px_25px] bg-gradient-to-r from-purple-500 to-pink-500>
+        <div class=" navigation w-96">
+      <div class="navigtation-container flex justify-between items-center mt-5">
+        <button
+          class="button play-pause border-0 p-0 bg-transparent outline-none duration-500 cursor-pointer hover:invert-[.25]"
+          style="transition: 0.5s;">
+          <img src="./assets/icons/play.png" class="play-pause-img__src relative w-[70px]" />
+        </button>
+        <div class="about-song flex flex-col items-center w-[200px]">
+          <p class="song-title m-0 text-base text-center text-black-600 font-bold">S3RL feat Mixie Moon - Music is my
+            saviour</p>
+        </div>
+        <div class="next-previous-song">
+          <button
+            class="button prev border-0 p-0 bg-transparent outline-none duration-500 cursor-pointer hover:invert-[.25]"
+            style="transition: 0.5s;">
+            <img src="./assets/icons/backward.png" class="previous-song relative w-[50px]" />
+          </button>
+          <button
+            class="button next border-0 p-0 bg-transparent outline-none duration-500 cursor-pointer hover:invert-[.25]"
+            style="transition: 0.5s;">
+            <img src="./assets/icons/forward.png" class="next-song relative w-[50px]" />
+          </button>
+          <audio src="./assets/music/S3RL feat Mixie Moon - Music is my saviour.mp3" class="audio"></audio>
+        </div>
       </div>
-      <div class="sub-player">
-        <div class="navigation">
-          <div class="navigtation-container">
-            <button class="button play-pause">
-              <img src="./assets/icons/play.png" class="play-pause-img__src"/>
-            </button>
-            <div class="about-song">
-              <p class="song-title">S3RL feat Mixie Moon - Music is my saviour</p>
-            </div>
-            <div class="next-previous-song">
-              <button class="button prev">
-                <img src="./assets/icons/backward.png" class="previous-song"/>
-              </button>
-              <button class="button next">
-                <img src="./assets/icons/forward.png" class="next-song"/>
-              </button>
-              <audio src="./assets/music/S3RL feat Mixie Moon - Music is my saviour.mp3" class="audio"></audio>
-            </div>
+      <div class="slider-and-volume flex justify-between w-[370px] my-5">
+        <div class="slider relative w-[270px]">
+          <div class="duration-time absolute top-[-400%] right-0 text-base text-black-600 font-bold">00:00</div>
+          <div class="progress-bar w-[270px] h-[7px] rounded-[3px] bg-slate-400">
+            <div class="progress w-0 h-[7px] bg-slate-700 duration-500"></div>
           </div>
-        </div>
-        <div class="slider-and-volume">
-          <div class="slider">
-          <div class="duration-time">00:00</div>
-          <div class="progress-bar">
-            <div class="progress"></div>
+          <div
+            class="progress-dot absolute -translate-y-2 translate-y-0 opacity-0 w-3.5 h-3.5 bg-black left-0 top-[-4px] duration-500 rounded-[6px]">
           </div>
-          <div class="progress-dot"></div>
-          <div class="current-time">3:20</div>
+          <div class="current-time absolute top-[116%] left-0 text-base text-[#adadad] rounded-[6px]">3:20</div>
         </div>
-          <div class="volume-line">
-            <div class="volume-mean"></div>
-          </div>
+        <div class="volume-line w-[70px] h-[7px] rounded-[3px] bg-slate-400">
+          <div class="volume-mean  w-[7px] h-[7px] rounded-[3px] bg-[#3879f1]"></div>
         </div>
-        <div class="footer">
-          <div class="data">(C) 2022</div>
-          <a href="https://github.com/nan-simon">Github</a>
-          <a href="https://rs.school/js-stage0/">RS-School</a>
-        </div>
-        </div>
-        
-        
       </div>
     </div>
-    <script src="index.js"></script>
-  </body>
+  </div>
+
+
+  </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+
 </html>
