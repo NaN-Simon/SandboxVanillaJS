@@ -57,3 +57,4 @@ new Card('Rotated Box', './projects/rotatedBox/box.html', 'Deploy', 'October 202
 new Card('LocalStorage', './projects/localStorage/index.html', 'Deploy', 'March 2024')
 new Card('voiceRecognition', './projects/voiceRecognition', 'Deploy', 'March 2024')
 new Card('modalCSS', './projects/modalCSS', 'Deploy', 'April 2024')
+new Card('Audio Visualizer Player', './projects/audioVisualizerPlayer/index.html', 'Deploy', 'April 2024')

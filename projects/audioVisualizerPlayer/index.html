@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Audio-player</title>
+</head>
+
+<body class="body m-0 p-0 box-border flex justify-center items-center relative h-[100vh] bg-[#000000] scroll-smooth">
+  <div
+    class="background-container flex justify-center items-center absolute overflow-hidden w-full h-[692px] shadow-[0px_0px_30px_#5d6597]">
+    <img src="./assets/images/cover0.png"
+      class="background absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-cover z-0 blur opacity-20" />
+    <div class="audio-visualizer flex justify-center items-center relative m-0">
+    </div>
+  </div>
+
+  <div
+    class="container flex justify-center items-center flex-col relative z-10 w-auto rounded-[25px] shadow-[0px_0px_30px_#5d6597]">
+    <div class="sup-player overflow-hidden rounded-[25px_25px_0_0]">
+      <img id="thumbnail" src="./assets/images/cover0.png" class="w-[400px] h-[400px] -mb-2 duration-[2000ms]" />
+    </div>
+    <div id="sub-player" class="flex flex-col items-center w-[400px] h-[145px] rounded-[0_0_25px_25px] bg-gradient-to-r from-purple-500 to-pink-500>
+        <div class=" navigation w-96">
+      <div class="navigtation-container flex justify-between items-center mt-5">
+        <button id="play-pause-btn"
+          class="border-0 p-0 bg-transparent outline-none duration-500 cursor-pointer hover:invert-[.25]"
+          style="transition: 0.5s;">
+          <img id="play-pause-img" src="./assets/svg/play-circle-svgrepo-com.svg" class="relative w-[70px]" />
+        </button>
+        <div class="about-song flex flex-col items-center w-[200px]">
+          <p id="song-name" class="m-0 text-base text-center text-black-600 font-bold">
+            S3RL feat Mixie Moon - Music is my saviour
+          </p>
+        </div>
+        <div class="next-previous-song">
+          <button id="prev" class="border-0 p-0 bg-transparent outline-none duration-500 cursor-pointer hover:invert-[.15]">
+            <img src="./assets/svg/double-caret-left-circle-svgrepo-com.svg" class="relative w-[50px] duration-500" />
+          </button>
+          <button id="next" class="border-0 p-0 bg-transparent outline-none duration-500 cursor-pointer hover:invert-[.15]">
+            <img src="./assets/svg/double-caret-right-circle-svgrepo-com.svg" class="relative w-[50px] duration-500" />
+          </button>
+          <audio id="audio" src="./assets/music/S3RL feat Mixie Moon - Music is my saviour.mp3"></audio>
+        </div>
+      </div>
+      <div class="slider-and-volume flex justify-between w-[370px] my-5">
+        <div class="slider relative w-[270px]">
+          <div id="duration-time" class="absolute top-[-400%] right-0 text-base text-black-600 font-bold">00:00</div>
+          <div id="progress-bar" class="w-[270px] h-[7px] rounded-[3px] bg-slate-400 cursor-pointer">
+            <div id="progress" class="w-0 h-[7px] rounded-[3px] bg-black duration-500"></div>
+          </div>
+          <div id="progress-dot"
+            class="absolute -translate-y-2 translate-y-0 opacity-0 w-3.5 h-3.5 bg-black left-0 top-[-4px] duration-500 rounded-[6px]">
+          </div>
+          <div id="current-time" class="absolute top-[116%] left-0 text-base text-slate-400 rounded-[6px] font-bold">3:20</div>
+        </div>
+        <div id="volume" class="w-[70px] h-[7px] rounded-[3px] bg-slate-400 cursor-pointer">
+          <div id="volume-mean" class="w-[7px] h-[7px] rounded-[3px] bg-black"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+
+</html>
