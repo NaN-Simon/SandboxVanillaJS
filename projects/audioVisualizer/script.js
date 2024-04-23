@@ -1,27 +1,29 @@
-let body, audio, context, analyser, src, num, array, width, logo, myElements, height 
+let analyser, myElements
 
-body = document.querySelector('body');
-audio = document.getElementById('audio')
+const audioVisualizer = document.querySelector('.audio-visualizer');
+const audio = document.getElementById('audio')
 
-num = 64;
-array = new Uint8Array(num * 3);
-width = 10;
+const num = 64;
+const array = new Uint8Array(num * 3);
+const width = 10;
 
 window.onclick = function(){
   audio.play();
 
   for (let i = 0; i < num; i++) {
-    logo = document.createElement('div');
+    const logo = document.createElement('div');
     logo.className = 'logo';
     logo.style.background = 'red';
+    logo.style.margin = '2px';
+    logo.style.borderRadius = '30px';
     logo.style.minWidth = width + 'px';
-    body.appendChild(logo);
+    audioVisualizer.appendChild(logo);
   }
 
   myElements = document.getElementsByClassName('logo')
-  context = new AudioContext();
+  const context = new AudioContext();
   analyser = context.createAnalyser();
-  src = context.createMediaElementSource(audio);
+  const src = context.createMediaElementSource(audio);
   src.connect(analyser);
   analyser.connect(context.destination);
   loop()
@@ -30,9 +32,9 @@ window.onclick = function(){
 function loop(){
   window.requestAnimationFrame(loop);
   analyser.getByteFrequencyData(array);
-  console.log(array)
+  // console.log(array)
   for(let i = 0; i < num; i++){
-    height = array[i+num];
+    const height = array[i+num];
     myElements[i].style.minHeight = height+'px';
     myElements[i].style.opacity = 0.008 * height;
   }
