@@ -58,3 +58,5 @@ new Card('LocalStorage', './projects/localStorage/index.html', 'Deploy', 'March 
 new Card('voiceRecognition', './projects/voiceRecognition', 'Deploy', 'March 2024')
 new Card('modalCSS', './projects/modalCSS', 'Deploy', 'April 2024')
 new Card('Audio Visualizer Player', './projects/audioVisualizerPlayer/index.html', 'Deploy', 'April 2024')
+new Card('Cookie', './projects/cookieTest/index.html', 'Deploy', 'June 2024')
+new Card('Animation', './projects/animation/index.html', 'Deploy', 'June 2024')
