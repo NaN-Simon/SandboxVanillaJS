@@ -8,46 +8,50 @@ body{
   flex-direction: column;;
   justify-content: center;
   align-items: center;
+  gap: 30px;
   height: 100vh;
+  background: rgb(31, 31, 31);
 }
 .wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
-}
-.result {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 500px;
-  max-width: 600px;
-  min-height: 30px;
-  border: 1px solid #00000070;
-  border-radius: 10px;
-}
-.back-info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  min-height: 30px;
-  border: 1px solid #00000070;
-  border-radius: 10px;
+  padding: 10px;
 }
-.btn {
+.buttons{
+  display: flex;
+  gap: 20px;
+}
+.textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px;
+  min-width: 200px;
+  width: 100%;
+  max-width: 600px;
+  min-height: 100px;
+  padding: 10px;
+  resize: none;
+  color: white;
+  border: 1px solid #777777;
+  border-radius: 10px;
+  background: rgb(20, 20, 20)
+}
+.btn-record, .btn-speech {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 50px;
-  border-radius: 50%;
+  border-radius: 15px;
+  padding: 10px;
   border: 2px solid #53bd66;;
   background: #53bd66;;
   cursor: pointer;
+  color: white;
+  font-size: 18px;
   outline: none;
   transition: border 0.5s;
 }
