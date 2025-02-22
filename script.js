@@ -61,3 +61,4 @@ new Card('Audio Visualizer Player', './projects/audioVisualizerPlayer/index.html
 new Card('Cookie', './projects/cookieTest/index.html', 'Deploy', 'June 2024')
 new Card('Animation', './projects/animation/index.html', 'Deploy', 'June 2024')
 new Card('Glitch Photo', './projects/glitchPhoto/index.html', 'Deploy', 'October 2024')
+new Card('Sub Sub Nav', './projects/subSubNav/index.html', 'Deploy', 'January 2025')
