@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG to PNG Конвертер</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Конвертер SVG в PNG</h1>
+        
+        <div class="input-section">
+            <label for="svg-input">Загрузите SVG файл:</label>
+            <input type="file" id="svg-input" accept=".svg" />
+            
+            <label for="svg-textarea">Или вставьте SVG код:</label>
+            <textarea id="svg-textarea" placeholder="Вставьте SVG код здесь..."></textarea>
+        </div>
+
+        <div class="preview-section">
+            <h3>Предпросмотр:</h3>
+            <div id="svg-preview"></div>
+        </div>
+
+        <div class="options">
+            <label for="width">Ширина (px):</label>
+            <input type="number" id="width" value="800" min="1">
+            
+            <label for="height">Высота (px):</label>
+            <input type="number" id="height" value="600" min="1">
+        </div>
+
+        <button id="convert-btn">Конвертировать в PNG</button>
+        
+        <div class="result-section">
+            <h3>Результат:</h3>
+            <img id="png-result" style="display: none;">
+            <a id="download-link" style="display: none;">Скачать PNG</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
