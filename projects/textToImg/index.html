@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 20px);
+        }
+        canvas {
+            border: 1px black solid;
+        }
+
+        #textCanvas {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id='textCanvas' height=20></canvas>
+    <div style="aspect-ratio: 1/1; width: 300px; border: 1px black solid">
+        <img id='image'>
+    </div>
+    <br>
+    <textarea id='text'></textarea>
+    
+    <script>
+        let tCtx = document.getElementById('textCanvas').getContext('2d'); // Hidden canvas
+        let imageElem = document.getElementById('image'); // Image element
+
+        // Установите размер шрифта здесь
+        const fontSize = '40px'; // Размер шрифта
+        const fontFamily = 'Arial'; // Шрифт
+        tCtx.font = `${fontSize} ${fontFamily}`;
+
+        // Text input element
+        document.getElementById('text').addEventListener('keyup', function () {
+            // Очищаем канвас перед отрисовкой
+            tCtx.clearRect(0, 0, tCtx.canvas.width, tCtx.canvas.height); 
+            
+            // Измеряем ширину текста
+            tCtx.canvas.width = tCtx.measureText(this.value).width; 
+            
+            // Устанавливаем высоту канваса
+            tCtx.canvas.height = parseInt(fontSize) + 10; 
+            
+            // Устанавливаем шрифт перед отрисовкой текста
+            tCtx.font = `${fontSize} ${fontFamily}`; 
+            
+            // Отрисовываем текст
+            tCtx.fillText(this.value, 0, parseInt(fontSize)); 
+            imageElem.src = tCtx.canvas.toDataURL();
+        }, false);
+    </script>
+</body>
+
+</html>
