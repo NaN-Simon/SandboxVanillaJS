@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8 Марта</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        #logo {
+            position: absolute;
+            max-width: 350px;
+            max-height: 150px;
+            width: 100%;
+            height: 100%;
+            background-image: url('logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 2;
+        }
+
+        @media screen and (max-width: 768px) {
+            #logo {
+                max-width: 150px;
+                max-height: 95px;
+            }
+        }
+
+        .gif-container {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .gif-item {
+            width: auto;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .gif-item.active {
+            opacity: 1;
+        }
+
+        .gif-left {
+            margin-left: 10%;
+            transform: translateX(-50%);
+        }
+
+        .gif-right {
+            margin-right: 10%;
+            transform: translateX(50%);
+        }
+    </style>
+</head>
+
+<body class="bg-black">
+    <div id="slideshow-container"></div>
+    <div id="logo"></div>
+    <div class="gif-container" id="gif-container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Слайд-шоу
+            const container = document.getElementById('slideshow-container');
+            const totalSlides = 57;
+            let currentSlide = 0;
+
+            for (let i = 1; i <= totalSlides; i++) {
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                slide.style.backgroundImage = `url(img/${i}.jpg)`;
+                container.appendChild(slide);
+            }
+
+            const slides = document.querySelectorAll('.slide');
+
+            if (slides.length > 0) {
+                slides[0].classList.add('active');
+            }
+
+            function nextSlide() {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % totalSlides;
+                slides[currentSlide].classList.add('active');
+            }
+
+            setInterval(nextSlide, 3000);
+
+            // DVD Logo animation
+            const logo = document.getElementById('logo');
+            let posX = Math.random() * (window.innerWidth - logo.offsetWidth);
+            let posY = Math.random() * (window.innerHeight - logo.offsetHeight);
+            let velocityX = 2;
+            let velocityY = 2;
+            let colors = ['#ff0000', '#ff9900', '#ffff00', '#33ff00', '#0099ff', '#6633ff', '#cc00ff'];
+            let currentColor = 0;
+
+            function updatePosition() {
+                posX += velocityX;
+                posY += velocityY;
+
+                if (posX + logo.offsetWidth > window.innerWidth || posX < 0) {
+                    velocityX = -velocityX;
+                    changeColor();
+                }
+
+                if (posY + logo.offsetHeight > window.innerHeight || posY < 0) {
+                    velocityY = -velocityY;
+                    changeColor();
+                }
+
+                logo.style.left = posX + 'px';
+                logo.style.top = posY + 'px';
+
+                requestAnimationFrame(updatePosition);
+            }
+
+            function changeColor() {
+                currentColor = (currentColor + 1) % colors.length;
+                logo.style.filter = `hue-rotate(${currentColor * 50}deg)`;
+            }
+
+            logo.style.left = posX + 'px';
+            logo.style.top = posY + 'px';
+            updatePosition();
+
+            // GIF анимации
+            const gifContainer = document.getElementById('gif-container');
+            const totalGifs = 9;
+            let currentGifIndex = 0;
+            const gifPairs = [];
+
+            // Создаем пары GIF (0-2, 1-3, 2-0, 3-1 и т.д.)
+            for (let i = 0; i < totalGifs; i++) {
+                gifPairs.push([i, (i + 2) % totalGifs]);
+            }
+
+            // Функция для генерации случайной высоты
+            function getRandomHeight() {
+                const MAX_HEIGHT = 350;
+                const MIN_HEIGHT = 100;
+                return Math.floor(Math.random() * (MAX_HEIGHT - MIN_HEIGHT + 1)) + MIN_HEIGHT;
+            }
+
+            // Создаем элементы для GIF
+            for (let i = 1; i <= totalGifs; i++) {
+                const gifLeft = document.createElement('img');
+                gifLeft.className = 'gif-item gif-left';
+                gifLeft.src = `gif/gif${i}.gif`;
+                gifLeft.style.display = 'none';
+                gifContainer.appendChild(gifLeft);
+
+                const gifRight = document.createElement('img');
+                gifRight.className = 'gif-item gif-right';
+                gifRight.src = `gif/gif${i}.gif`;
+                gifRight.style.display = 'none';
+                gifContainer.appendChild(gifRight);
+            }
+
+            const gifItems = document.querySelectorAll('.gif-item');
+
+            function showNextGifPair() {
+                // Скрываем все GIF
+                gifItems.forEach(item => {
+                    item.classList.remove('active');
+                    item.style.display = 'none';
+                });
+
+                // Получаем текущую пару GIF
+                const [leftIndex, rightIndex] = gifPairs[currentGifIndex];
+
+                // Показываем левый GIF с рандомной высотой
+                const leftGif = document.querySelectorAll('.gif-left')[leftIndex];
+                leftGif.style.height = `${getRandomHeight()}px`;
+                leftGif.style.display = 'block';
+                leftGif.classList.add('active');
+
+                // Показываем правый GIF с рандомной высотой
+                const rightGif = document.querySelectorAll('.gif-right')[rightIndex];
+                rightGif.style.height = `${getRandomHeight()}px`;
+                rightGif.style.display = 'block';
+                rightGif.classList.add('active');
+
+                // Увеличиваем счетчик для следующей пары
+                currentGifIndex = (currentGifIndex + 1) % gifPairs.length;
+            }
+
+            // Показываем первую пару GIF сразу
+            showNextGifPair();
+
+            // Устанавливаем интервал для смены GIF (5 секунд)
+            setInterval(showNextGifPair, 5000);
+
+            // Обработка изменения размера окна
+            window.addEventListener('resize', function () {
+                // Для слайдов
+                slides.forEach(slide => {
+                    slide.style.width = window.innerWidth + 'px';
+                    slide.style.height = window.innerHeight + 'px';
+                });
+
+                // Для лого
+                if (posX > window.innerWidth - logo.offsetWidth) {
+                    posX = window.innerWidth - logo.offsetWidth;
+                }
+                if (posY > window.innerHeight - logo.offsetHeight) {
+                    posY = window.innerHeight - logo.offsetHeight;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
